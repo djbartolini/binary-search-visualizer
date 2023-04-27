@@ -9,7 +9,9 @@
 
   <main>
     <h2>Array:</h2>
-    <Array />
+    <div class="components">
+      <Array />
+    </div>
     <div class="start-button-div">
       <button>Start</button>
     </div>
@@ -19,10 +21,24 @@
 <style scoped>
   header {
     display: flex;
+    margin: 16px;
   }
+  
   main {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  h2 {
+    margin: 12% auto 48px auto;
+  }
+
+  .components {
+    width: fit-content;
+  }
+
   .start-button-div {
     position: absolute;
     bottom: 20%;
