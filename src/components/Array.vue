@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { StyleValue } from 'vue';
+
   const array = [1, 3, 7, 10, 13, 15, 17, 18, 20, 21, 22, 23, 25, 33, 35, 42, 45, 47, 50, 62];
 
   const binarySearch = (array: number[], key: number) => {
@@ -18,17 +20,29 @@
     }
   }
 
-  const moveTermBox = () => {
-    const key = 33;
-
+  const columns = (array: number[]): string => {
+    let string = '';
+    for (let i = 0; i < array.length; i++) {
+      string = string.concat('auto ');
+    }
+    return string;
   }
 
+  const gridStyle = (): StyleValue => {
+    return {
+      display: 'grid',
+      gridTemplateColumns: `${columns(array)}` 
+    }
+  }
+
+  console.log(columns(array));
+  console.log(gridStyle());
   console.log(binarySearch(array, 33));
 
 </script>
 
 <template>
-  <div class="array-div">
+  <div class="array-div" :style="gridStyle()">
     <div v-for="(num, i) in array">
       <div class="indices">
         {{ i }}
@@ -46,10 +60,7 @@
 </template>
 
 <style scoped>
-  .array-div {
-    display: flex;
-    flex-direction: row;
-  }
+
 
   .indices {
     padding: 0 0 10px 18px;
