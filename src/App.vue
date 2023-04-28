@@ -12,9 +12,6 @@
     <div class="components">
       <Array />
     </div>
-    <div class="start-button-div">
-      <button>Start</button>
-    </div>
   </main>
 </template>
 
@@ -39,8 +36,4 @@
     width: fit-content;
   }
 
-  .start-button-div {
-    position: absolute;
-    bottom: 20%;
-  }
 </style>
