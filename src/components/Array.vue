@@ -2,9 +2,12 @@
 import { ref, computed, watchEffect } from 'vue';
 import type { StyleValue, CSSProperties } from '@vue/runtime-dom';
 
-const array = ref([1, 3, 7, 10, 13, 15, 17, 18, 20, 21, 22, 23, 25, 33, 35, 42, 45, 47, 50, 62]);
+const array = ref<number[]>([1, 3, 7, 10, 13, 15, 17, 18, 20, 21, 22, 23, 25, 33, 35, 42, 45, 47, 50, 62]);
+const key = ref<number>(33);
 const middle = ref(0);
 const keyPosition = ref('-48px');
+const buttonText = ref<string>('Start');
+const isSearchDone = ref<boolean>(false);
 
 const binarySearch = (array: number[], key: number) => {
   let start = 0;
@@ -64,9 +67,8 @@ watchEffect(() => {
   keyStyle.value.left = `${keyPosition.value}`
 })
 
-let increment: number = 0;
 
-const handleMove = (array: number[], key: number): void => {
+const handleSearch = (array: number[], key: number): void => {
   let start: number = 0;
   let end: number = array.length - 1;
   let i: number = start;
@@ -78,6 +80,8 @@ const handleMove = (array: number[], key: number): void => {
       console.log('middle', middle.value);
   
       if (array[middle.value] === key) {
+        buttonText.value = 'Reset';
+        isSearchDone.value = true;
         return;
       } else if (array[middle.value] < key) {
         start = middle.value++;
@@ -89,10 +93,13 @@ const handleMove = (array: number[], key: number): void => {
       setTimeout(searchStep, 600);
     }
   }
-  setTimeout(searchStep, 600);
+  setTimeout(searchStep, 100);
 }
 
-
+const handleReset = (): void => {
+  keyPosition.value = '-48px';
+  isSearchDone.value = false;
+}
 </script>
 
 <template>
@@ -114,7 +121,8 @@ const handleMove = (array: number[], key: number): void => {
     </div>
   </div>
   <div class="start-button-div">
-    <button @click="handleMove(array, 33)">Start</button>
+    <button v-if="!isSearchDone" @click="handleSearch(array, key)">Start</button>
+    <button v-if="isSearchDone" @click="handleReset">Reset</button>
   </div>
 </template>
 
@@ -135,5 +143,18 @@ const handleMove = (array: number[], key: number): void => {
   position: relative;
   left: 50%;
   top: 48px;
+}
+
+button {
+  background-color: #242424;
+  color: white;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: border 0.3s ease;
+}
+
+button:hover {
+  border-color: rgb(30, 175, 105);
 }
 </style>
