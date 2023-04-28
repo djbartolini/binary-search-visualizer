@@ -9,23 +9,6 @@ const keyPosition = ref('-48px');
 const buttonText = ref<string>('Start');
 const isSearchDone = ref<boolean>(false);
 
-const binarySearch = (array: number[], key: number) => {
-  let start = 0;
-  let end = array.length - 1;
-
-  while (start <= end) {
-    middle.value = Math.floor((start + end) / 2);
-
-    if (array[middle.value] === key) {
-      return middle;
-    } else if (array[middle.value] < key) {
-      start = middle.value++;
-    } else {
-      end = middle.value--;
-    }
-  }
-}
-
 
 const columns = (array: number[]): string => {
   let string = '';
