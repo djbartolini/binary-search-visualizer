@@ -6,6 +6,10 @@ This is an educational project I put together to help learn how to use Vue.js. T
 
 The app features a hard-coded array and key for now - I will be updating this soon to allow user input.
 
+## Demo
+
+![Demo screenshot](./public/demo-binary.png)
+
 ## Binary Search
 
 ![Binary search](./public/binary-search.jpeg)
