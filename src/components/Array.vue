@@ -98,7 +98,6 @@ const handleSearch = (array: number[], key: number): void => {
     if (start <= end) {
       middle.value = Math.floor((start + end) / 2);
       getMiddlePosition(middle.value);
-      console.log('middle', middle.value);
 
       if (array[middle.value] === key) {
         buttonText.value = 'Reset';
@@ -128,14 +127,14 @@ const handleReset = (): void => {
   keyPosition.value = '-48px';
   isSearchDone.value = false;
 }
-
-console.log("input array", inputArray.value);
 </script>
 
 <template>
   <div>
     <div class="input-div">
-      <p>Input values will be comma or space delimited</p>
+      <p>Input values are limited to numbers, commas, and spaces,</p>
+      <p>will be comma or space delimited,</p>
+      <p>and are sorted via an insertion sort</p>
       <form @submit.prevent="handleSubmit" class="form">
         <label>
           Input an array of numbers:
@@ -173,11 +172,12 @@ console.log("input array", inputArray.value);
 <style scoped>
 
 .input-div {
-  margin: 120px 0;
+  margin: 48px 0 96px 0;
 }
 
 .input-div p {
   text-align: center;
+  margin-bottom: 6px;
 }
 
 .input-array {
@@ -216,6 +216,7 @@ console.log("input array", inputArray.value);
 .start-btn {
   width: 96px;
   margin: 0 auto;
+  transform: translateX(-40px);
 }
 
 .indices {
