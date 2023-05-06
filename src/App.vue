@@ -8,7 +8,6 @@
   </header>
 
   <main>
-    <h2>Array:</h2>
     <div class="components">
       <Array />
     </div>
